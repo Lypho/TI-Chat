@@ -1,0 +1,59 @@
+.loading-mask {
+  visibility: hidden;
+}
+
+.chat-room {
+  top: 0px;
+}
+
+.chat-header {
+  display: none;
+}
+
+.chat-lines {
+  font-family: "Roboto-light";
+  font-size: 20px;
+  width: 80%;
+  border-right: 1px solid #ccc;
+}
+
+.chat-lines .ember-view:nth-child(odd) .chat-line {
+  background-color: #efefef;
+  border-top: 0px solid #f1f1f1;
+}
+
+.chat-lines .ember-view:nth-child(even) .chat-line {
+  border-top: 0px solid #f1f1f1;
+}
+
+.badges .badge:not(.subscriber) {
+  border-radius: 2px;
+}
+
+.indicator {
+  border-left-color: #FFF;
+}
+
+.ember-view.message-line.chat-line.notification {
+  background-color: #00a4ff;
+}
+
+.ember-view.message-line.chat-line.notification .message {
+  color: white;
+}
+
+.ember-chat-container .chatters-view {
+  left: 80%;
+  font-size: 18px;
+  border-left: 1px solid #ccc;
+}
+
+.chatters {
+  border-bottom: 1px solid #ccc;
+}
+
+.chat-interface {
+  width: 80.1%;
+  border-right: 1px solid #ccc;
+}
+
