@@ -6488,6 +6488,7 @@ $(window).load(function(){
 {"username": "zyoritv", "badge": "http://static-cdn.jtvnw.net/jtv_user_pictures/badges/2179/18x18.png"}];
 
   var viewerListLink = $('[data-ember-action=620]')[0];
+  var strawpoll = undefined;
 
   /*----------  INITIAL PAGE SETUP  ----------*/
   // remove shat settings
@@ -6502,7 +6503,10 @@ $(window).load(function(){
   // set viewer list to refresh every minute
   setInterval(refreshViewerList, 60000);
   // watch for incoming messages
-  document.getElementsByClassName('chat-lines')[0].addEventListener('DOMNodeInserted', readMessage, false);
+  document.getElementsByClassName('chat-lines')[0].addEventListener('DOMNodeInserted', handleDOMNodeInsertion, false);
+  // add strawpoll div
+  $('.chat-room').after('<div id="strawpoll-container"></div>');
+  strawpoll = $('#strawpoll-container');
 
   /*----------  DEFINE FUNCTIONS  ----------*/
   // refreshes the viewer list by closing and opening it
@@ -6514,14 +6518,36 @@ $(window).load(function(){
   }, 500);
   }
 
+  // deal with new twitch message
+  function handleDOMNodeInsertion(event) {
+    if($(event.target)[0].nodeType === 1) {
+      applyPartnerIcon(event);
+      $(event.target).on('click', addScrollbackBackground);
+      $(event.target).children().on('click', addScrollbackBackground);
+    }
+  }
+
+  // change background of message to make it more visible
+  function addScrollbackBackground() {
+    $('.scrollback-background').removeClass('scrollback-background');
+    $(event.target).closest('li.ember-view').addClass('scrollback-background');
+  }
+
+  
+  // add scrollback marker to clicked message
+  function addScrollbackMarker() {
+    $('.scrollback-marker').remove();
+    $(event.target).closest('div.ember-view').after('<div class="scrollback-marker"></div>');
+  }
+  
+
   // read new messages
-  function readMessage() {
+  function applyPartnerIcon(event) {
     var username = $(event.target).find('.from').text().toLowerCase();
-    var message = $(event.target).find('.message').text();
-    var subscribes = $(event.target).find('.subscriber').text();
 
     for (var i = 0; i < partners.length; i++) {
       if(partners[i]['username'] === username) {
+        console.log('[TI-Chat] '+ partners[i]['username']);
         $(event.target).find('.badges').prepend('<div style="background-image: url('+partners[i]['badge']+')" class="badge float-left tooltip partner" original-title="Partner"></div>');
         break;
       };

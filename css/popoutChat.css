@@ -14,11 +14,21 @@
   border-right: 1px solid #ccc !important;
   font-family: "Roboto-Light" !important;
   font-size: 20px !important;
+  padding: 0px !important;
   width: 80% !important;
 }
 
+.chat-lines .ember-view.message-line.chat-line.scrollback-background {
+  background-color: #fEE50E !important;
+}
+
+.scrollback-marker {
+  height: 2px !important;
+  background-color: #FF0000 !important;
+}
+
 .ember-chat .scroll.chat-messages {
-  height: 97% !important;
+  height: 96% !important;
 }
 
 .chat-lines .ember-view:nth-child(odd) .chat-line {
@@ -40,6 +50,10 @@
 
 .badges .badge:not(.subscriber) {
   border-radius: 2px !important;
+}
+
+.emoticon {
+  margin: 0px !important;
 }
 
 .indicator {
@@ -87,3 +101,35 @@
   width: 80.1% !important;
 }
 
+/*----------  STRAWPOLL ADD-ON  ----------*/
+#strawpoll-container {
+  background: #f2f2f2;
+  border-top: 1px solid #ccc;
+  bottom: 0%;
+  left: 80.1%;
+  position: absolute;
+  width: 20%;
+  z-index: 5;
+}
+
+#strawpoll-container h4 {
+  font-weight: 100;
+  padding: 2px;
+  text-align: center;
+}
+
+#strawpoll-container ul {
+  padding: 10px;
+  text-align: center;
+}
+
+#strawpoll-container input[type='button'] {
+  background: #6441A5;
+  border: none;
+  color: #FFF;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 10px;
+  width: 100%;
+}
