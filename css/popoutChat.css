@@ -1,59 +1,89 @@
 .loading-mask {
-  visibility: hidden;
+  visibility: hidden !important;
 }
 
 .chat-room {
-  top: 0px;
+  top: 0px !important;
 }
 
 .chat-header {
-  display: none;
+  display: none !important;
 }
 
 .chat-lines {
-  font-family: "Roboto-light";
-  font-size: 20px;
-  width: 80%;
-  border-right: 1px solid #ccc;
+  border-right: 1px solid #ccc !important;
+  font-family: "Roboto-Light" !important;
+  font-size: 20px !important;
+  width: 80% !important;
+}
+
+.ember-chat .scroll.chat-messages {
+  height: 97% !important;
 }
 
 .chat-lines .ember-view:nth-child(odd) .chat-line {
-  background-color: #efefef;
-  border-top: 0px solid #f1f1f1;
+  background-color: #efefef !important;
+  border-top: 0px solid #f1f1f1 !important;
 }
 
 .chat-lines .ember-view:nth-child(even) .chat-line {
-  border-top: 0px solid #f1f1f1;
+  border-top: 0px solid #f1f1f1 !important;
+}
+
+.ember-chat .chat-messages .message-line.chat-line {
+  line-height: 24px !important;
+}
+
+.ember-chat .badges .badge {
+  margin-top: 3px !important;
 }
 
 .badges .badge:not(.subscriber) {
-  border-radius: 2px;
+  border-radius: 2px !important;
 }
 
 .indicator {
-  border-left-color: #FFF;
+  border-left-color: #FFF !important;
 }
 
 .ember-view.message-line.chat-line.notification {
-  background-color: #00a4ff;
+  background-color: #00a4ff !important;
 }
 
 .ember-view.message-line.chat-line.notification .message {
-  color: white;
+  color: white !important;
 }
 
-.ember-chat-container .chatters-view {
-  left: 80%;
-  font-size: 18px;
-  border-left: 1px solid #ccc;
+.ember-chat .chat-interface .textarea-contain {
+  margin-bottom: 0px !important;
 }
 
-.chatters {
-  border-bottom: 1px solid #ccc;
+.ember-chat .chat-interface .emoticon-selector {
+  bottom: 96% !important;
+  right: 0px !important;
+}
+
+.dropmenu {
+  margin: 0px !important;
+}
+
+.ember-chat-container .ember-chat .chatters-view {
+  border-left: 1px solid #ccc !important;
+  font-size: 18px !important;
+  left: 80% !important;
+}
+
+.chat-room .chatters {
+  border-bottom: 0px solid #ccc !important;
+}
+
+.ember-chat .chatters-view .chatters-container #viewers {
+  padding: 0px 10px !important;
 }
 
 .chat-interface {
-  width: 80.1%;
-  border-right: 1px solid #ccc;
+  height: 4% !important;
+  padding: 0px !important;
+  width: 80.1% !important;
 }
 
