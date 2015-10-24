@@ -5131,7 +5131,7 @@ $(window).load(function(){
 {"username": "slickscizor", "badge": "http://static-cdn.jtvnw.net/jtv_user_pictures/badges/3061/18x18.png"}, 
 {"username": "sliffylol", "badge": "http://static-cdn.jtvnw.net/jtv_user_pictures/badges/4682/18x18.png"}, 
 {"username": "slinned", "badge": "http://static-cdn.jtvnw.net/jtv_user_pictures/badges/3370/18x18.png"}, 
-{"username": "slipstream-82", "badge": "http://static-cdn.jtvnw.net/jtv_user_pictures/badges/2541/18x18.png"}, 
+{"username": "slipstream82", "badge": "http://static-cdn.jtvnw.net/jtv_user_pictures/badges/2541/18x18.png"}, 
 {"username": "sllverlady1", "badge": "http://static-cdn.jtvnw.net/jtv_user_pictures/badges/1190/18x18.png"}, 
 {"username": "slooshi", "badge": "http://static-cdn.jtvnw.net/jtv_user_pictures/badges/7003/18x18.png"}, 
 {"username": "slootbag", "badge": "http://static-cdn.jtvnw.net/jtv_user_pictures/badges/802/18x18.png"}, 
