@@ -5131,7 +5131,7 @@ $(window).load(function(){
 {"username": "slickscizor", "badge": "http://static-cdn.jtvnw.net/jtv_user_pictures/badges/3061/18x18.png"}, 
 {"username": "sliffylol", "badge": "http://static-cdn.jtvnw.net/jtv_user_pictures/badges/4682/18x18.png"}, 
 {"username": "slinned", "badge": "http://static-cdn.jtvnw.net/jtv_user_pictures/badges/3370/18x18.png"}, 
-{"username": "slipstream82", "badge": "http://static-cdn.jtvnw.net/jtv_user_pictures/badges/2541/18x18.png"}, 
+{"username": "slipstream-82", "badge": "http://static-cdn.jtvnw.net/jtv_user_pictures/badges/2541/18x18.png"}, 
 {"username": "sllverlady1", "badge": "http://static-cdn.jtvnw.net/jtv_user_pictures/badges/1190/18x18.png"}, 
 {"username": "slooshi", "badge": "http://static-cdn.jtvnw.net/jtv_user_pictures/badges/7003/18x18.png"}, 
 {"username": "slootbag", "badge": "http://static-cdn.jtvnw.net/jtv_user_pictures/badges/802/18x18.png"}, 
@@ -6490,6 +6490,7 @@ $(window).load(function(){
   var viewerListLink = $('[data-ember-action=620]')[0];
   var strawpoll = undefined;
   var streams = undefined;
+  var streamsController = undefined;
   var username = window.location.pathname.split('/')[1];
 
   /*----------  INITIAL PAGE SETUP  ----------*/
@@ -6501,17 +6502,56 @@ $(window).load(function(){
   }, 1000);
   setTimeout(function(){
   	$('.scroll .ember-view.ember-list-view.ember-list-view-list').css("height", window.innerHeight);
-  }, 1300);
+  }, 1400);
   // set viewer list to refresh every minute
   setInterval(refreshViewerList, 60000);
   // watch for incoming messages
   document.getElementsByClassName('chat-lines')[0].addEventListener('DOMNodeInserted', handleDOMNodeInsertion, false);
   // add strawpoll div
   $('.chat-room').after('<div id="strawpoll-container"></div>');
-  $('.chat-room').after('<div id="streams-container"></div>');
   strawpoll = $('#strawpoll-container');
+
+  $('.chat-room').after('<div id="streams-controller"></div>');
+  streamsController = $('#streams-controller');
+  streamsController.append('<form id="stream-1-form" class="stream-form"><label for="stream-1-input">Stream #1</label><input id="stream-1-input" type="text" name="channel" placeholder="Lypho"></form>');
+  streamsController.append('<form id="stream-2-form" class="stream-form"><label for="stream-2-input">Stream #2</label><input id="stream-2-input" type="text" name="channel" placeholder="Kungfufruitcup"></form>');
+  streamsController.append('<form id="stream-3-form" class="stream-form"><label for="stream-3-input">Stream #3</label><input id="stream-3-input" type="text" name="channel" placeholder="Rozoken"></form>');
+  
+  $('.chat-room').after('<div id="streams-container"></div>');
   streams = $('#streams-container');
-  streams.append('<object type="application/x-shockwave-flash" data="//www-cdn.jtvnw.net/swflibs/TwitchPlayer.swf" width="100%" height="33%" id="ember500-flash-player" style="visibility: visible;"><param name="allowScriptAccess" value="always"><param name="allowFullScreen" value="true"><param name="wmode" value="opaque"><param name="bgcolor" value="000000"><param name="flashvars" value="id=ember500-flash-player&amp;hide_chat=true&amp;channel='+username+'&amp;embed=1&amp;auto_play=true&amp;start_volume=100&amp;device_id=aa023c5139e23fa6&amp;session_device_id=b550785d22e864a5&amp;localstorage_device_id=ae14b8eca6303bfc&amp;test_environment_url=http://www.twitch.tv&amp;eventsCallback=Twitch.player.FlashPlayer2.callbacks.callback0"></object>')
+  streams.append('<object id="stream-1" type="application/x-shockwave-flash" data="http://www.twitch.tv/widgets/live_embed_player.swf?channel=lypho" width="100%" height="330px" style="visibility: visible;"><param name="scale" value="exactfit"><param name="allowScriptAccess" value="always"><param name="allowNetworking" value="all"><param name="allowFullScreen" value="true"><param name="wmode" value="direct"><param name="bgcolor" value="000000"><param name="flashvars" value="channel=lypho&amp;auto_play=true&amp;start_volume=100"></object>');
+  streams.append('<object id="stream-2" type="application/x-shockwave-flash" data="http://www.twitch.tv/widgets/live_embed_player.swf?channel=lypho" width="100%" height="330px" style="visibility: visible;"><param name="scale" value="exactfit"><param name="allowScriptAccess" value="always"><param name="allowNetworking" value="all"><param name="allowFullScreen" value="true"><param name="wmode" value="direct"><param name="bgcolor" value="000000"><param name="flashvars" value="channel=lypho&amp;auto_play=true&amp;start_volume=100"></object>');
+  streams.append('<object id="stream-3" type="application/x-shockwave-flash" data="http://www.twitch.tv/widgets/live_embed_player.swf?channel='+username+'" width="100%" height="330px" style="visibility: visible;"><param name="scale" value="exactfit"><param name="allowScriptAccess" value="always"><param name="allowNetworking" value="all"><param name="allowFullScreen" value="true"><param name="wmode" value="direct"><param name="bgcolor" value="000000"><param name="flashvars" value="channel='+username+'&amp;auto_play=true&amp;start_volume=100"></object>');
+
+
+  /*----------  EVENT HANDLERS  ----------*/
+  
+  $('.stream-form').on('submit', function(event) {
+    event.preventDefault();
+
+    var input = $(event.target).children('input');
+    var id = input.attr('id').split('-')[1];
+    var channel = input.val().length ? input.val() : input.attr('placeholder');
+
+    input.attr('placeholder', channel);
+    input.val('');
+
+    $('#stream-'+id)[0].loadStream(channel);
+  });
+
+  $('object').on('mouseover', function(event) {
+    event.preventDefault();
+
+    var stream = $(event.target);
+    stream.css('height', '300px');
+  });
+
+  $('object').on('mouseout', function(event) {
+    event.preventDefault();
+
+    var stream = $(event.target);
+    stream.css('height', '330px');
+  });
 
   /*----------  DEFINE FUNCTIONS  ----------*/
   // refreshes the viewer list by closing and opening it
