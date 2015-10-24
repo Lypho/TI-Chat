@@ -6489,6 +6489,8 @@ $(window).load(function(){
 
   var viewerListLink = $('[data-ember-action=620]')[0];
   var strawpoll = undefined;
+  var streams = undefined;
+  var username = window.location.pathname.split('/')[1];
 
   /*----------  INITIAL PAGE SETUP  ----------*/
   // remove shat settings
@@ -6499,14 +6501,17 @@ $(window).load(function(){
   }, 1000);
   setTimeout(function(){
   	$('.scroll .ember-view.ember-list-view.ember-list-view-list').css("height", window.innerHeight);
-  }, 1500);
+  }, 1300);
   // set viewer list to refresh every minute
   setInterval(refreshViewerList, 60000);
   // watch for incoming messages
   document.getElementsByClassName('chat-lines')[0].addEventListener('DOMNodeInserted', handleDOMNodeInsertion, false);
   // add strawpoll div
   $('.chat-room').after('<div id="strawpoll-container"></div>');
+  $('.chat-room').after('<div id="streams-container"></div>');
   strawpoll = $('#strawpoll-container');
+  streams = $('#streams-container');
+  streams.append('<object type="application/x-shockwave-flash" data="//www-cdn.jtvnw.net/swflibs/TwitchPlayer.swf" width="100%" height="33%" id="ember500-flash-player" style="visibility: visible;"><param name="allowScriptAccess" value="always"><param name="allowFullScreen" value="true"><param name="wmode" value="opaque"><param name="bgcolor" value="000000"><param name="flashvars" value="id=ember500-flash-player&amp;hide_chat=true&amp;channel='+username+'&amp;embed=1&amp;auto_play=true&amp;start_volume=100&amp;device_id=aa023c5139e23fa6&amp;session_device_id=b550785d22e864a5&amp;localstorage_device_id=ae14b8eca6303bfc&amp;test_environment_url=http://www.twitch.tv&amp;eventsCallback=Twitch.player.FlashPlayer2.callbacks.callback0"></object>')
 
   /*----------  DEFINE FUNCTIONS  ----------*/
   // refreshes the viewer list by closing and opening it
@@ -6549,6 +6554,8 @@ $(window).load(function(){
       if(partners[i]['username'] === username) {
         console.log('[TI-Chat] '+ partners[i]['username']);
         $(event.target).find('.badges').prepend('<div style="background-image: url('+partners[i]['badge']+')" class="badge float-left tooltip partner" original-title="Partner"></div>');
+        $(event.target).find('.indicator').css('display','block');
+        $(event.target).find('.indicator').css('border-left-color','#6441a5');
         break;
       };
     };
